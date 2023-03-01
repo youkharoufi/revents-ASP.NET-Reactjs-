@@ -2,18 +2,20 @@ import React from 'react';
 import { Segment, Item, Button, List, Icon } from 'semantic-ui-react';
 import EventListAttendee from './EventListAttendee';
 
-export default function EventListItem(props){
+export default function EventListItem({event, selectEvent, deleteEvent}){
+
+
     return (
         
         <Segment.Group>
             <Segment>
                 <Item.Group>
                     <Item>
-                        <Item.Image size='tiny' circular src={props.event.hostPhotoURL}/>
+                        <Item.Image size='tiny' circular src={event.hostPhotoURL}/>
                         <Item.Content>
-                            <Item.Header content={props.event.title}/>
+                            <Item.Header content={event.title}/>
                             <Item.Description>
-                                Hosted {props.event.hostedBy}
+                                Hosted {event.hostedBy}
                             </Item.Description>
                         </Item.Content>
                     </Item>
@@ -21,21 +23,22 @@ export default function EventListItem(props){
             </Segment>
             <Segment>
                 <span>
-                    <Icon name='clock'/>{props.event.date}
-                    <Icon name='marker'/>{props.event.venue}
+                    <Icon name='clock'/>{event.date}
+                    <Icon name='marker'/>{event.venue}
                 </span>
             </Segment>
             <Segment secondary>
                 <List horizontal>
-                    {props.event.attendees.map(attendee=>
+                    {event.attendees.map(attendee=>
                     <EventListAttendee attendee={attendee} key={attendee.id}/>
                 )}
 
                 </List>
             </Segment>
             <Segment clearing>
-                <div>{props.event.description}</div>
-                <Button color='teal' floated='right' content='View'/>
+                <div>{event.description}</div>
+                <Button onClick={()=>deleteEvent(event.id)} color='red' floated='right' content='Delete'/>
+                <Button onClick={()=>selectEvent(event)} color='teal' floated='right' content='View'/>
             </Segment>
         </Segment.Group>
         
