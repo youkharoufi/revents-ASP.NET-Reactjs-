@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import { Segment, Header, Form, Button } from 'semantic-ui-react';
 import cuid from 'cuid';
+import {Link} from 'react-router-dom'
 
-export default function EventForm({setFormOpen, setEvents, createEvent, selectedEvent, updatedEvent}){
+export default function EventForm({ createEvent, selectedEvent, updatedEvent}){
 
     const initialValues = selectedEvent ?? {
         title:'',
@@ -17,7 +18,6 @@ export default function EventForm({setFormOpen, setEvents, createEvent, selected
 
     function handleFormSubmit(){
         createEvent({...values, id: cuid(), hostedBy: "l'pup", attendees:[], hostPhotoURL:'assets/categoryImages/user.png'});
-        setFormOpen(false);
     }
 
     function handleUpdatedFormSubmit(){
@@ -54,7 +54,7 @@ export default function EventForm({setFormOpen, setEvents, createEvent, selected
                 </Form.Field>
 
                 <Button type="submit" floated="right" positive content="Submit" />
-                <Button onClick={()=>setFormOpen(false)} type="submit" floated="right" content="Cancel" />
+                <Button as={Link} to="/events" type="submit" floated="right" content="Cancel" />
 
             </Form>
         </Segment>
