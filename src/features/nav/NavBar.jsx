@@ -23,6 +23,7 @@ export default function NavBar ({setShowNavBar}){
                         <img src="/assets/categoryImages/logo.png" alt="logo"/>
                     </Menu.Item>
                     <Menu.Item as={NavLink} to="/events" name="Events"/>
+                    <Menu.Item as={NavLink} to="/sandbox" name="Sandbox"/>
                     { isAuthenticated &&
                     <Menu.Item as={NavLink} to="/createEvent">
                     <Button positive inverted content="Create Event"/>
