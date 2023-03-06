@@ -8,6 +8,7 @@ import EventDetailedPage from "../../features/events/eventDetailed/EventDetailed
 import EventForm from "../../features/events/eventForm/EventForm";
 import Sandbox from "../../features/sandbox/Sandbox";
 import { useLocation } from "react-router-dom";
+import ModalManager from "../common/modals/ModalManager";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <>
+      <ModalManager/>
       {showNavBar &&
       <NavBar setShowNavBar={setShowNavbar}/>
       }
@@ -31,8 +33,8 @@ function App() {
       <Routes>
       <Route exact path='/' element={!showNavBar && <HomePage setShowNavBar={setShowNavbar}/>}/>
       <Route path='/events' element={<EventDashboard/>}/>
-      <Route path='/events/:id' element={<EventDetailedPage/>}/>
-      <Route path={'/createEvent'} element={<EventForm key={key}/>} />
+      <Route path={'/events/:id'} element={<EventDetailedPage/>}/>
+      <Route path='/createEvent' element={<EventForm key={key}/>} />
       <Route path={'/manage/:id'} element={<EventForm key={key}/>} />
       <Route path='/sandbox' element={<Sandbox/>}/>
       </Routes>
